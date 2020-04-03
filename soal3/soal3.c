@@ -162,6 +162,7 @@ int main(int argc, char *argv[]){
         }
         }
         printf("%d\n",a);
+        closedir(dr);
         for(int b=0;b<a;b++){
            int* p;
            pthread_create(&threads[b], NULL, categorystar, (void*)(p));
@@ -178,6 +179,7 @@ int main(int argc, char *argv[]){
         }
         }
         printf("%d\n",a);
+        closedir(dr);
         strcpy(in,argv[2]);
         for(int b=0;b<a;b++){
            int* p;
