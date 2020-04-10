@@ -55,7 +55,7 @@ void lower_string(char s[]) {
 ```
 
 fungsi lower string untuk merubah huruf kapital jadi huruf kecil.
-
+## -f
 ```javascript
     if(strcmp(argv[1],"-f")==0){
         for (int i = 2; i < argc; i++) {
@@ -98,8 +98,13 @@ mendapatkan ekstensi dari nama file tersebut untuk membuat nama folder "strtok(g
 jika tidak ada exstensinya akan membuat folder "Unknown"
 mendapatkan nama file dengan "strtok(getDir(in),"/")"
 kemudian gabungkan nama file dengan nama folder masing-masing
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3f%20null.png)
+sebelum program dijalankan
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3f%20input.png)
+input pada program
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3f%20hasil.png)
 
-
+## *
 ```javascript
     else if(strcmp(argv[1],"*") == 0){
         struct dirent *de;
@@ -155,6 +160,13 @@ void* categorystar(void *arg){
 }
 ```
 thread : membuka direktori file dan memindahkan kedalam folder sesuai exstensinya, dan jika tidak punya extensi maka akan dipindahkan ke folder "Unknown".
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20star%20null.png)
+sebelum program dijalankan
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20star%20input.png)
+input pada program
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20star%20hasil.png)
+
+## -d
 
 ```javascript
     else if(strcmp(argv[1],"-d") == 0){
@@ -221,3 +233,8 @@ Thread : membuka direktori sesuai inputan, mendapatkan ekstensi file tersebut un
 Untuk memindahkan file tersebut harus menggabungkan path direktori dan nama file yang ada "path_direktori/nama_file", 
 kemudian selanjutnya gabungkan nama ekstensinya dengan nama file di direktori yang di buka terseut misal : "jpg/qwerty.jpg", png/qwerty.PNG.
 kemudian hasil gabungan tersebut digunakan untuk memindahkan file.
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20d%20null.png)
+sebelum program dijalankan
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20d%20input.png)
+input pada program
+![screenshot_bang](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/3%20d%20hasil.png)
