@@ -18,4 +18,79 @@ belum ada di soal3.zip.
 
 >Source code file: [Soal3](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/soal3.c)
 
+```javascript
+char *getExt (char fspec[]) {
+    char *e = strrchr (fspec, '.');
+    if (e == NULL)
+        e = ""; // fast method, could also use &(fspec[strlen(fspec)]).
+    return e;
+}
+```
+
+fungsi getExt digunakan untuk mendapatkan string setelah "." terakhir, misalnya : .jpg, .png, .JPG, .PNG.
+
+```javascript
+char *getDir (char fspec[]) {
+    char *e = strrchr (fspec, '/');
+    if (e == NULL)
+        e = ""; // fast method, could also use &(fspec[strlen(fspec)]).
+    return e;
+}
+```
+
+fungsi getDir digunakan untuk mendapatkan string setelah "/" terakhir, misalnya : /jpg, /png, /JPG, /PNG.
+
+```javascript
+void lower_string(char s[]) {
+   int c = 0;
+   
+   while (s[c] != '\0') {
+      if (s[c] >= 'A' && s[c] <= 'Z') {
+         s[c] = s[c] + 32;
+      }
+      c++;
+   }
+}
+```
+
+fungsi lower string untuk merubah huruf kapital jadi huruf kecil.
+
+```javascript
+    if(strcmp(argv[1],"-f")==0){
+        for (int i = 2; i < argc; i++) {
+           strcpy(in,argv[i]);
+           int* p;
+           pthread_create(&threads[i-1], NULL, categoryf, (void*)(p));
+           pthread_join(threads[i-1], NULL);
+           printf("%s\n",input(in));
+        }
+    }
+```
+mencopykan setiap pathfile argv[] yang diinputkan ke variable global.
+membuat thread sesuai banyaknya path file yang diinpukan.
+```javascript
+void* categoryf(void *arg){
+    char nf[100];
+    char na[100];
+    strcpy(na,strtok(getExt((in)),"."));
+    lower_string(na);
+    memset(nf, '\0', sizeof(nf));
+    if(strlen(getExt(in)) != 0){
+     if (stat(na, &st) == -1)
+     {
+        mkdir(na,0777);
+     }
+     sprintf(nf,"%s/%s",  na, strtok(getDir(in),"/") );
+     rename(in, nf);
+     }
+     else{
+     if (stat("Unknown)", &st) == -1)
+     {    
+        mkdir("Unknown",0777);
+     }
+     sprintf(nf,"Unknown/%s",strtok(getDir(in),"/"));
+     rename(in, nf);
+     }
+}
+```
 
