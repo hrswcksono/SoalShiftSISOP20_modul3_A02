@@ -93,4 +93,130 @@ void* categoryf(void *arg){
      }
 }
 ```
+mendapatkan ekstensi dari nama file tersebut untuk membuat nama folder "strtok(getExt((in)),".")"
+jika tidak ada exstensinya akan membuat folder "Unknown"
+mendapatkan nama file dengan "strtok(getDir(in),"/")"
+kemudian gabungkan nama file dengan nama folder masing-masing
 
+
+```javascript
+    else if(strcmp(argv[1],"*") == 0){
+        struct dirent *de;
+        DIR *dr = opendir(".");
+        while ((de = readdir(dr)) != NULL){ 
+        if (de->d_type == DT_REG)
+        {
+          a++;
+        }
+        }
+        printf("%d\n",a);
+        closedir(dr);
+        for(int b=0;b<a;b++){
+           int* p;
+           pthread_create(&threads[b], NULL, categorystar, (void*)(p));
+           pthread_join(threads[b], NULL);
+        }
+    }
+```
+membuka direktori "." atau tempat file tersebut di jalankan, dan menghitung banyaknya file bukan folder di direktori sekarang,
+dan membuat thread sebanyak file yang ada
+
+```javascript
+void* categorystar(void *arg){
+    char nama[100];
+    struct dirent *de;
+    DIR *dr = opendir(".");
+    while ((de = readdir(dr)) != NULL){ 
+       if (de->d_type == DT_REG)
+       {    
+         if(strlen(getExt(de->d_name)) != 0){
+              char na[100];
+              strcpy(na,strtok(getExt((de->d_name)),"."));
+              lower_string(na);
+              if (stat(na, &st) == -1)
+              {
+                 mkdir(na,0777);
+              }
+              sprintf(nama,"%s/%s",na,de->d_name);
+              rename(de->d_name , nama);
+           
+        }
+       else{
+         if (stat("Unknown)", &st) == -1)
+         {    
+             mkdir("Unknown",0777);
+         }
+         sprintf(nama,"Unknown/%s",de->d_name);
+         rename(de->d_name, nama);
+       }}
+    }
+    closedir(dr);
+}
+```
+thread : membuka direktori file dan memindahkan kedalam folder sesuai exstensinya, dan jika tidak punya extensi maka akan dipindahkan ke folder "Unknown".
+
+```javascript
+    else if(strcmp(argv[1],"-d") == 0){
+        struct dirent *de;
+        DIR *dr = opendir(argv[2]);
+        while ((de = readdir(dr)) != NULL){ 
+        if (de->d_type == DT_REG)
+        {
+          a++;
+        }
+        }
+        printf("%d\n",a);
+        closedir(dr);
+        strcpy(in,argv[2]);
+        for(int b=0;b<a;b++){
+           int* p;
+           pthread_create(&threads[b], NULL, categoryd, (void*)(p));
+           pthread_join(threads[b], NULL);
+        }
+
+    }
+```
+membuka direktori sesuai path direktori yang di inputkan, kemudian menghitung file bukan folder yang ada di dalamnya.
+kemudian jumlah file tersebut digunakan untuk membuat banyaknya thread.
+
+```javascript
+void* categoryd(void *arg){
+    char asal[100];
+    char nama[100];
+    struct dirent *de;
+    DIR *dr = opendir(in);
+    while ((de = readdir(dr)) != NULL){ 
+       if (de->d_type == DT_REG)
+       {    
+         if(strlen(getExt(de->d_name)) != 0){
+              char na[100];
+              strcpy(na,strtok(getExt((de->d_name)),"."));
+              lower_string(na);
+              if (stat(na, &st) == -1)
+              {
+                 mkdir(na,0777);
+              }
+              sprintf(nama,"%s/%s",na,de->d_name);
+              sprintf(asal,"%s/%s",in,de->d_name);
+              //printf("%s\n",de->d_name);
+              //printf("%s\n",buffer);
+              rename(asal , nama);
+           
+        }
+       else{
+         if (stat("Unknown)", &st) == -1)
+         {    
+             mkdir("Unknown",0777);
+         }
+         sprintf(asal,"%s%s",in,de->d_name);
+         sprintf(nama,"Unknown/%s",de->d_name);
+         rename(asal, nama);
+       }}
+    }
+    closedir(dr);
+}
+```
+Thread : membuka direktori sesuai inputan, mendapatkan ekstensi file tersebut untuk membuat folder pada direktori program dijalankan.
+Untuk memindahkan file tersebut harus menggabungkan path direktori dan nama file yang ada "path_direktori/nama_file", 
+kemudian selanjutnya gabungkan nama ekstensinya dengan nama file di direktori yang di buka terseut misal : "jpg/qwerty.jpg", png/qwerty.PNG.
+kemudian hasil gabungan tersebut digunakan untuk memindahkan file.
