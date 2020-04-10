@@ -55,8 +55,6 @@ void* categoryf(void *arg){
      }
      sprintf(nf,"%s/%s",  na, strtok(getDir(in),"/") );
      rename(in, nf);
-     //printf("%s %s   %s\n",strtok(getExt(in),"."), nf,in );
-     //memset(in, '\0', sizeof(in));
      }
      else{
      if (stat("Unknown)", &st) == -1)
@@ -84,9 +82,6 @@ void* categorystar(void *arg){
                  mkdir(na,0777);
               }
               sprintf(nama,"%s/%s",na,de->d_name);
-              //sprintf(buffer,"%s/%s",input(in),de->d_name);
-              //printf("%s\n",de->d_name);
-              //printf("%s\n",buffer);
               rename(de->d_name , nama);
            
         }
