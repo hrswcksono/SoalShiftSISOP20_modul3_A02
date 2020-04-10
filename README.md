@@ -16,4 +16,6 @@ Buatlah sebuah program dari C untuk mengkategorikan file. Program ini akan memin
 ● Silahkan download soal3.zip sebagai percobaan. Namun silahkan dicoba-coba sendiri untuk kemungkinan test case lainnya yang mungkin
 belum ada di soal3.zip.
 
+>Source code file: [Soal3](https://github.com/hrswcksono/SoalShiftSISOP20_modul3_A02/blob/master/soal3/soal3.c)
+
 
